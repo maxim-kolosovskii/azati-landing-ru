@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZATI — Дизайн, который продаёт</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <style>
+        /* ================= BASE STYLES ================= */
+
+        @font-face {
+            font-family: 'HeliosBold';
+            src:
+                    url('/fonts/heliosext-bold.woff2') format('woff2'),
+                    url('/fonts/heliosext-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'HeliosExt';
+            src:
+                    url('/fonts/heliosext.woff2') format('woff2'),
+                    url('/fonts/heliosext.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-color: #E4E4E4;
+            --text-color: #0A0A0A;
+            --accent-color: #FB8500;
+            --grey: #888888;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --base-font-size: 18px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+        html {
+            font-size: var(--base-font-size);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'HeliosExt', sans-serif;
+            font-size: 1rem;
+            overflow-x: hidden;
+            text-transform: uppercase;
+        }
+
+        h1, h2, h3, h4, .orange-text, .card-project-name, .logo {
+            font-family: 'HeliosBold', sans-serif;
+            font-weight: 700;
+        }
+
+        a { text-decoration: none; color: inherit; display: inline-block; }
+        ul { list-style: none; }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .orange-text { color: var(--accent-color); }
+        .white-text {
+            font-family: 'HeliosExt', sans-serif;
+            font-weight: 400;
+        }
+
+        .arrow-mask {
+            display: inline-flex;
+            overflow: hidden;
+            vertical-align: middle;
+            margin: -10px 0 10px 15px;
+            height: 1em;
+            align-items: center;
+        }
+
+        .css-arrow {
+            display: inline-block;
+            width: 0; height: 0;
+            border-top: 0.39em solid transparent;
+            border-bottom: 0.39em solid transparent;
+            border-left: 0.39em solid var(--accent-color);
+            transform: translateX(-45px);
+            opacity: 1;
+            will-change: transform;
+        }
+
+        .btn-arrow {
+            display: inline-block; font-size: 1.2em;
+            transition: transform 0.3s var(--ease);
+        }
+        button .btn-arrow { font-size: 1.4rem; margin-left: 10px; }
+        a:hover .btn-arrow, button:hover .btn-arrow { transform: translate(5px, -5px); }
+
+        /* ================= HEADER ================= */
+        header {
+            height: 90px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 12px;
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 100;
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease, transform 0.4s ease, opacity 0.4s ease, height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        header.is-scrolled {
+            background-color: rgba(228, 228, 228, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(14px);
+            height: 68px;
+        }
+        header.is-hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .logo img { height: 30px; width: auto; display: block; }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 4vw;
+            font-weight: 500;
+        }
+        .nav-item { transition: color 0.3s ease, transform 0.3s ease; }
+        .nav-item:hover { color: var(--accent-color); transform: translateY(-1px); }
+
+        /* ================= HERO ================= */
+        .hero {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            top: 0; left: 0;
+            overflow: hidden;
+        }
+        .hero-inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-title-wrapper {
+            max-width: 1000px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .hero-title {
+            will-change: transform, opacity, filter;
+            transform-origin: center center;
+            transform-style: preserve-3d;
+        }
+        .hero h1 {
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+        .hero-desc-wrapper {
+            max-width: 20em;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .hero-desc {
+            line-height: 1.6;
+            will-change: transform;
+        }
+        .webgl-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        /* ================= RESPONSIVE BREAKPOINTS ================= */
+        @media (max-width: 991.98px) {
+            .hero { position: relative; height: 85vh; z-index: 5; }
+            .hero-inner { gap: 40px; }
+        }
+
+        @media (max-width: 575.98px) {
+            .container { padding: 0 20px; }
+            .arrow-mask { margin: -5px 0 5px 5px; }
+            header,
+            header.is-scrolled {
+                padding: 0 20px;
+            }
+            .header-nav { display: none; }
+            .hero h1 { font-size: 2.4rem; }
+        }
+        @media (min-width: 576px) {
+            .container { padding: 0 40px; }
+
+            .arrow-mask { margin: -5px 0 5px 10px; }
+
+            header,
+            header.is-scrolled {
+                padding: 0 40px;
+            }
+            .header-nav { display: flex; gap: 4vw; }
+
+            .hero h1 { font-size: clamp(2.8rem, 6.5vw, 6rem); }
+        }
+        @media (min-width: 992px) {
+            .arrow-mask { margin: -10px 0 10px 15px; }
+
+            .hero { height: 100vh; position: fixed; z-index: 1; }
+            .hero-inner { gap: 0; }
+            .hero-desc-wrapper { position: absolute; top: 160px; right: 40px; }
+            .hero-desc { text-align: right; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <a href="https://azati.ai/" target="_blank" class="logo">
+        <img src="img/azati-logo-design.svg" alt="AZATI Logo" width="150" height="30" decoding="sync">
+    </a>
+    <div class="header-right">
+        <nav class="header-nav">
+            <a href="#work" class="nav-item">РАБОТЫ</a>
+            <a href="#services" class="nav-item">УСЛУГИ</a>
+            <a href="#process" class="nav-item">ПРОЦЕСС</a>
+        </nav>
+        <a href="#contact" class="orange-text">ОБСУДИМ ПРОЕКТ <span class="btn-arrow">↗</span></a>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
+
+        <div class="hero-inner container">
+            <div class="hero-desc-wrapper">
+                <div class="hero-desc">ПРОДУМАННЫЕ ИНТЕРФЕЙСЫ НА ОСНОВЕ СТРАТЕГИИ, ЯСНОСТИ И ИЗМЕРИМЫХ РЕЗУЛЬТАТОВ.</div>
+            </div>
+
+            <div class="hero-title-wrapper">
+                <h1 class="hero-title">
+                    <span class="orange-text">ДИЗАЙН, КОТОРЫЙ<br>ПРОДАЁТ.</span><br>
+                    <span class="white-text">А НЕ ПРОСТО<br>КАРТИНКА.</span>
+                    <span class="arrow-mask">
+                            <span class="css-arrow"></span>
+                        </span>
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="work-section">
+        <div class="work-inner container">
+            <div>
+                <h2 class="stagger-header js-gsap-header">
+                    <span class="sub-title">Наши проекты</span>
+                    <span class="main-title">Работы</span>
+                </h2>
+            </div>
+
+            <div class="work-grid">
+                <div class="sidebar">
+                    <ul>
+                        <li class="active">Все</li>
+                        <li>UI/UX и веб-дизайн</li>
+                        <li>Бренд-айдентика</li>
+                        <li>Графический дизайн</li>
+                        <li>Мобильные</li>
+                        <li>ИИ</li>
+                    </ul>
+                </div>
+
+                <div class="portfolio-list">
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-med-now-11-m.webp">
+                                <img
+                                        src="img/case-med-now-11.webp"
+                                        alt="Med Now промо"
+                                        width="973"
+                                        height="830"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">Med Now промо</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Бренд-айдентика</span>
+                                    <span class="tag">Мобильные</span>
+                                </div>
+<!--                                                                <a href="#" class="view-btn">-->
+<!--                                                                    Смотреть <span class="btn-arrow">↗</span>-->
+<!--                                                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-818drums-m.webp">
+                                <img
+                                        src="img/case-818drums.webp"
+                                        alt="818 Drums сайт"
+                                        width="973"
+                                        height="830"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">818 Drums сайт</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Дашборды</span>
+                                    <span class="tag">Бренд-айдентика</span>
+                                    <span class="tag">Аналитика</span>
+                                    <span class="tag">Данные</span>
+                                    <span class="tag">Мобильные</span>
+                                </div>
+                                <!--                                <a href="#" class="view-btn">-->
+                                <!--                                    Смотреть <span class="btn-arrow">↗</span>-->
+                                <!--                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-online-platform-m.webp">
+                                <img
+                                        src="img/case-online-platform.webp"
+                                        alt="District промо"
+                                        width="973"
+                                        height="669"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">Онлайн-платформа деловой репутации</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Дашборды</span>
+                                    <span class="tag">Веб-приложение</span>
+                                    <span class="tag">Аналитика</span>
+                                    <span class="tag">Данные</span>
+                                    <span class="tag">HRTech</span>
+                                    <span class="tag">Карьерная платформа</span>
+                                </div>
+<!--                                <a href="#" class="view-btn">-->
+<!--                                    Смотреть <span class="btn-arrow">↗</span>-->
+<!--                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-payllet-m.webp">
+                                <img
+                                        src="img/case-payllet.webp"
+                                        alt="Payllet промо"
+                                        width="973"
+                                        height="830"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">Payllet</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Веб-дизайн</span>
+                                    <span class="tag">Бренд-айдентика</span>
+                                </div>
+<!--                                <a href="#" class="view-btn">-->
+<!--                                    Смотреть <span class="btn-arrow">↗</span>-->
+<!--                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-anomalyze-3-m.webp">
+                                <img
+                                        src="img/case-anomalyze-3.webp"
+                                        alt="Anomalyze промо"
+                                        width="973"
+                                        height="800"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">Anomalyze промо</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">Дашборды</span>
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Логотипы</span>
+                                    <span class="tag">Продуктовый дизайн</span>
+                                </div>
+                                                                <a href="#" class="view-btn">
+                                                                    Смотреть <span class="btn-arrow">↗</span>
+                                                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-district-m.webp">
+                                <img
+                                        src="img/case-district.webp"
+                                        alt="District промо"
+                                        width="973"
+                                        height="830"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">District Бренд-айдентика</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">Веб-дизайн</span>
+                                    <span class="tag">Лендинг</span>
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Мобильный дизайн</span>
+                                    <span class="tag">Визуальная айдентика</span>
+                                    <span class="tag">ИИ-арт</span>
+                                    <span class="tag">Адаптивный дизайн</span>
+                                </div>
+                                <!--                                <a href="#" class="view-btn">-->
+                                <!--                                    Смотреть <span class="btn-arrow">↗</span>-->
+                                <!--                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-unika-people-m.webp">
+                                <img
+                                        src="img/case-unika-people.webp"
+                                        alt="Unika промо"
+                                        width="973"
+                                        height="830"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">Unika Бренд-айдентика</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">Продуктовый дизайн</span>
+                                    <span class="tag">Бренд-айдентика</span>
+                                    <span class="tag">Логотипы</span>
+                                    <span class="tag">Визуальная айдентика</span>
+                                    <span class="tag">Визуальная коммуникация</span>
+                                    <span class="tag">Цифровой дизайн</span>
+                                    <span class="tag">Графический дизайн</span>
+                                </div>
+<!--                                <a href="#" class="view-btn">-->
+<!--                                    Смотреть <span class="btn-arrow">↗</span>-->
+<!--                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="services-inner container">
+            <div>
+                <h2 class="stagger-header js-gsap-header">
+                    <span class="sub-title">Что мы делаем</span>
+                    <span class="main-title">Услуги</span>
+                </h2>
+            </div>
+
+            <div class="services-list">
+                <div class="service-item intro-item">
+                    <div class="w100-divider js-line-reveal"></div>
+                    <div class="intro-item-content">
+                        <div class="triangle-mask js-triangle-reveal-down">
+                            <div class="intro-triangle"></div>
+                        </div>
+                        <div class="intro-text">
+                            <p style="margin-bottom: 20px;">Наши ключевые компетенции — где идеи обретают форму.</p>
+                            <p>От бренд-айдентики до цифрового опыта — каждая дисциплина направлена на создание продуктов, которые ощущаются осмысленными, ясными и долговечными.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-top">
+                        <div class="num">01 <div class="w100-divider js-line-reveal"></div></div>
+                        <div class="title-container">
+                            <h3>UI/UX и<br>веб-дизайн</h3>
+                            <div class="triangle-mask-45 js-triangle-reveal-left-45"><div class="corner-triangle-45"></div></div>
+                        </div>
+                    </div>
+                    <div class="service-bottom">
+                        <div class="service-desc">
+                            <p>Мы проектируем интуитивные цифровые решения, где ясность, удобство и визуальное направление работают слаженно — связывая потребности пользователей с бизнес-целями через продуманный UI/UX и веб-дизайн.</p>
+                        </div>
+                        <div class="service-img">
+                            <img src="img/service-anomalyze.webp" alt="UI/UX и веб-дизайн" width="550" height="367" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-top">
+                        <div class="num">02 <div class="w100-divider js-line-reveal"></div></div>
+                        <div class="title-container">
+                            <h3>Бренд-<br>айдентика</h3>
+                            <div class="triangle-mask-45 js-triangle-reveal-left-45"><div class="corner-triangle-45"></div></div>
+                        </div>
+                    </div>
+                    <div class="service-bottom">
+                        <div class="service-desc">
+                            <p>Мы создаём бренд-айдентику, основанную на ясности, последовательности и осмысленных визуальных системах. Определяя позиционирование, тон и ключевые элементы бренда, мы выравниваем восприятие с бизнес-целями — создавая уникальные идентичности, которые естественно масштабируются в цифровом и физическом пространстве.</p>
+                        </div>
+                        <div class="service-img">
+                            <video
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                    preload="auto"
+                            >
+                                <source src="video/unika-logo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-top">
+                        <div class="num">03 <div class="w100-divider js-line-reveal"></div></div>
+                        <div class="title-container">
+                            <h3>Графический<br>дизайн</h3>
+                            <div class="triangle-mask-45 js-triangle-reveal-left-45"><div class="corner-triangle-45"></div></div>
+                        </div>
+                    </div>
+                    <div class="service-bottom">
+                        <div class="service-desc">
+                            <p>Мы разрабатываем графические материалы, которые коммуницируют ясно и остаются консистентными с вашим брендом. От вёрстки и типографики до упаковки и печати — мы переводим визуальную айдентику в выразительные, целостные активы на всех точках контакта.</p>
+                        </div>
+                        <div class="service-img">
+                            <img src="img/service-graph.webp" alt="Графический дизайн" width="550" height="367" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="process-section">
+        <div class="process-inner container">
+            <h2 class="stagger-header js-gsap-header">
+                <span class="sub-title">Как мы работаем</span>
+                <span class="main-title">Процесс</span>
+            </h2>
+            <div class="w100-divider js-line-reveal"></div>
+            <p class="stagger-description">Чёткая структура. Продуманный дизайн. Измеримый результат.</p>
+
+            <div class="process-slides">
+                <div class="process-step js-process-step-1">
+                    <div class="process-content">
+                        <div class="num">01</div>
+                        <h3>Стратегия</h3>
+                        <p>Мы начинаем с понимания реальной проблемы за брифингом. Через исследование и анализ мы определяем цели, ограничения и логику продукта.</p>
+                        <div class="tags-wrapper">
+                            <span class="tag">UX-исследования</span>
+                            <span class="tag">Продуктовая стратегия</span>
+                            <span class="tag">Аналитика</span>
+                            <span class="tag">Аудит</span>
+                            <span class="tag">IA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step js-process-step-2">
+                    <div class="triangle-mask js-triangle-reveal-right">
+                        <div class="corner-triangle"></div>
+                    </div>
+                    <div class="process-content">
+                        <div class="num">02</div>
+                        <h3>Пользовательский опыт</h3>
+                        <p>Мы превращаем стратегию в интуитивный пользовательский опыт через продуманную структуру, бесшовные сценарии и взаимодействия, спроектированные вокруг реального поведения пользователей.</p>
+                        <div class="tags-wrapper">
+                            <span class="tag">User Flows</span>
+                            <span class="tag">Вайрфреймы</span>
+                            <span class="tag">Навигация</span>
+                            <span class="tag">CJM</span>
+                            <span class="tag">Прототипирование</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step js-process-step-3">
+                    <div class="process-content">
+                        <div class="num">03</div>
+                        <h3>Дизайн</h3>
+                        <p>Мы переводим структуру в ясные, масштабируемые визуальные системы. От UI до бренд-айдентики — всё консистентно и готово к производству.</p>
+                        <div class="tags-wrapper">
+                            <span class="tag">UI Дизайн</span>
+                            <span class="tag">Дизайн-системы</span>
+                            <span class="tag">Брендинг</span>
+                            <span class="tag">Визуальная айдентика</span>
+                            <span class="tag">Адаптивность</span>
+                        </div>
+                    </div>
+                    <div class="triangle-mask js-triangle-reveal-right">
+                        <div class="corner-triangle"></div>
+                    </div>
+                </div>
+
+                <div class="process-step js-process-step-4">
+                    <div class="process-content">
+                        <div class="num">04</div>
+                        <h3>Взаимодействие</h3>
+                        <p>Мы используем движение осмысленно. Микро-взаимодействия и переходы создают более плавный и отзывчивый цифровой опыт.</p>
+                        <div class="tags-wrapper">
+                            <span class="tag">Микро-взаимодействия</span>
+                            <span class="tag">Анимация</span>
+                            <span class="tag">UX-фидбэк</span>
+                            <span class="tag">Переходы</span>
+                        </div>
+                    </div>
+                    <div class="triangle-mask js-triangle-reveal-down">
+                        <div class="corner-triangle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="contact">
+    <div class="footer-inner container">
+        <div class="footer-cta reveal">
+            <div class="cta-left">
+                <h2>
+                    <span class="orange-text">Вы готовы</span><br>
+                    <span class="white-text">Создать<br>что-то новое</span>
+                </h2>
+            </div>
+
+            <div class="cta-right">
+                <form method="post" class="form form--general contact-form" enctype="multipart/form-data">
+                    <!--                        {% include 'components/ajax-loader.html' %}-->
+                    <!--                        {% csrf_token %}-->
+                    <input type="hidden" name="form_type" value="general">
+                    <input type="hidden" name="page_url" value="{{ request.build_absolute_uri }}">
+                    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-general">
+                    <label for="extra_info_box_xyz"
+                           class="visually-hidden"
+                           aria-hidden="true"
+                           tabindex="-1">
+                        Дополнительное поле
+                    </label>
+                    <input
+                            type="text"
+                            id="extra_info_box_xyz"
+                            name="extra_info_box_xyz"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            style="position:absolute;left:-9999px;opacity:0;"
+                    >
+
+                    <div class="section-form__input-wrapper">
+                        <!-- NAME -->
+                        <fieldset class="form__group input-group">
+                            <label class="form__label" for="full-name">
+                                Полное имя<sup>*</sup>
+                            </label>
+                            <input
+                                    class="form__control {% if general.name.errors %}is-invalid{% endif %}"
+                                    id="full-name"
+                                    type="text"
+                                    name="name"
+                                    maxlength="55"
+                                    minlength="2"
+                                    required
+                                    placeholder="ВАШЕ ИМЯ"
+                            >
+                            <span id="full-name_error" class="form-error"></span>
+                            <!--                                {% if general.name.errors %}-->
+                            <div class="invalid-feedback">
+                                <!--                                    {{ general.name.errors|join:", " }}-->
+                                Ошибка имени
+                            </div>
+                            <!--                                {% endif %}-->
+                        </fieldset>
+
+                        <!-- EMAIL -->
+                        <fieldset class="form__group input-group">
+                            <label class="form__label" for="email">
+                                Email<sup>*</sup>
+                            </label>
+                            <input
+                                    class="form__control {% if general.email.errors %}is-invalid{% endif %}"
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    maxlength="55"
+                                    minlength="5"
+                                    required
+                                    placeholder="E-MAIL"
+                            >
+                            <span id="email_error" class="form-error"></span>
+                            <!--                                {% if general.email.errors %}-->
+                            <div class="invalid-feedback">
+                                <!--                                    {{ general.email.errors|join:", " }}-->
+                                Ошибка почты
+                            </div>
+                            <!--                                {% endif %}-->
+                        </fieldset>
+                    </div>
+
+                    <!-- PHONE -->
+                    <fieldset class="form__group input-group">
+                        <label class="form__label" for="form-phone">
+                            Номер телефона
+                        </label>
+                        <input
+                                type="tel"
+                                class="form__control {% if general.phone.errors %}is-invalid{% endif %}"
+                                id="form-phone"
+                                name="phone"
+                                placeholder="НОМЕР ТЕЛЕФОНА"
+                        >
+                        <input type="hidden" name="full_phone" id="full-phone">
+                        <span id="form-phone_error" class="form-error"></span>
+                        <!--                            {% if career.phone.errors %}-->
+                        <div class="invalid-feedback">
+                            <!--                                {{ career.phone.errors|join:", " }}-->
+                            Ошибка телефона
+                        </div>
+                        <!--                            {% endif %}-->
+                    </fieldset>
+
+                    <!-- MESSAGE -->
+                    <fieldset class="form__group input-group">
+                        <label class="form__label" for="message">
+                            Ваш запрос<sup>*</sup>
+                        </label>
+                        <textarea
+                                class="form__control form__control--textarea {% if general.message.errors %}is-invalid{% endif %}"
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required
+                                placeholder="СООБЩЕНИЕ"
+                        ></textarea>
+                        <span id="message_error" class="form-error"></span>
+                        <!--                            {% if general.message.errors %}-->
+                        <div class="invalid-feedback">
+                            <!--                                {{ general.message.errors|join:", " }}-->
+                            Ошибка сообщения
+                        </div>
+                        <!--                            {% endif %}-->
+                    </fieldset>
+
+                    <!-- FILE -->
+                    <fieldset class="form__group input-group">
+                        <label class="form__label form__label--file" for="form-file">
+                            Прикрепите дополнительную информацию или ТЗ<sup>*</sup>
+                        </label>
+                        <div class="custom-file-upload">
+                            <input
+                                    type="file"
+                                    id="form-file"
+                                    accept=".pdf,.docx,.jpg,.jpeg,.png"
+                                    name="file"
+                                    required
+                                    class="form__control form__control--file"
+                            >
+                            <label for="form-file" class="upload-label">
+                                <span class="icon-attach">ВЫБРАТЬ ФАЙЛ</span>
+                            </label>
+                        </div>
+                        <span id="form-file_error" class="form-error"></span>
+                        <!--                            {% if general.file.errors %}-->
+                        <div class="invalid-feedback">
+                            <!--                                {{ general.file.errors|join:", " }}-->
+                            Ошибка добавления файла
+                        </div>
+                        <!--                            {% endif %}-->
+                    </fieldset>
+
+                    <div class="section-form--contacts__row-consent-btn">
+                        <!-- CONSENT -->
+                        <fieldset class="form__group form__group--radio form__group--captcha">
+                            <input
+                                    class="form__control form__control--checkbox"
+                                    id="policy-checkbox"
+                                    type="checkbox"
+                                    required
+                                    name="consent"
+                            >
+                            <label
+                                    class="form__label form__label--checkbox"
+                                    for="policy-checkbox"
+                            >
+                                Я согласен на обработку моих данных согласно
+                                <a href="/privacy-policy" target="_blank">Политике конфиденциальности</a>
+                                и
+                                <a href="/terms-of-use" target="_blank">Условиям использования</a>
+                            </label>
+                            <span id="policy-checkbox_error" class="form-error"></span>
+                            <!--                                {% if general.consent.errors %}-->
+                            <div class="invalid-feedback">
+                                <!--                                    {{ general.consent.errors|join:", " }}-->
+                                Ошибка чекбокса
+                            </div>
+                            <!--                                {% endif %}-->
+                        </fieldset>
+
+                        <!-- SUBMIT -->
+                        <fieldset class="form__group">
+                            <button class="submit-btn" type="submit">
+                                ОТПРАВИТЬ
+                                <span class="btn-arrow">↗</span>
+                            </button>
+                        </fieldset>
+                    </div>
+
+                    <!-- SUCCESS -->
+                    <div class="form-success">
+                        Ваш запрос успешно отправлен.
+                    </div>
+
+                    <!-- ERROR -->
+                    <div class="error__container__general">
+                        <!--                            {% if general_error_message %}-->
+                        <!--                            {% include 'components/error-message.html' %}-->
+                        <!--                            {% endif %}-->
+                        Ошибка отправки
+                    </div>
+
+                    <div class="form__caption">
+                        Этот сайт защищён reCAPTCHA, применяются Политика конфиденциальности
+                        и Условия использования Google.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="w100-divider js-line-reveal"></div>
+
+    <div class="footer-inner container">
+        <div class="footer-bottom">
+            <div class="footer-menu-left">
+                <a href="#work" class="footer-link">РАБОТЫ</a>
+                <a href="#services" class="footer-link">УСЛУГИ</a>
+                <a href="#process" class="footer-link">ПРОЦЕСС</a>
+            </div>
+
+            <div class="footer-menu-right">
+                <a href="https://www.linkedin.com/company/azati-corporation" target="_blank" class="footer-link">LINKEDIN</a>
+                <a href="https://www.behance.net/azati" target="_blank" class="footer-link">BEHANCE</a>
+            </div>
+        </div>
+    </div>
+
+    <img src="img/azati-logo-design.svg" alt="AZATI Logo" class="footer-logo reveal" loading="lazy" decoding="async">
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>
