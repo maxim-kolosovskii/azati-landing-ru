@@ -32,38 +32,12 @@
     line-height: 1;
 }
 
-.triangle-mask {
+.dot {
     display: inline-block;
-    overflow: hidden;
-    position: relative;
-    will-change: transform;
-}
-.corner-triangle {
-    width: 36px; height: 36px;
+    width: 35px; height: 35px;
     background-color: var(--accent-color);
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    border-radius: 50%;
     will-change: transform;
-}
-
-.triangle-mask-45 {
-    width: 60px;
-    height: 50px;
-    margin: 15px -21px 0 0;
-    overflow: hidden;
-    position: relative;
-    transform: rotate(45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    will-change: transform;
-}
-.corner-triangle-45 {
-    width: 26px;
-    height: 51px;
-    background-color: var(--accent-color);
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
-    will-change: transform;
-    rotate: 90deg;
 }
 
 /* WORK SECTION */
@@ -265,8 +239,6 @@
     flex-direction: row; align-items: center; justify-content: space-between; gap: 4vh;
     padding: 10vh 0 15vh;
 }
-.intro-item .triangle-mask { width: 50%; display: block; }
-.intro-item .intro-triangle { width: 50px; height: 27px; background-color: var(--accent-color); clip-path: polygon(50% 100%, 0 0, 100% 0); }
 .intro-text { width: 50%; }
 .intro-text p {
     line-height: 1.6;
@@ -328,7 +300,7 @@
 .process-step.js-process-step-4 { align-items: flex-end; text-align: right; }
 .process-step.js-process-step-4 p { margin-left: auto; }
 .process-step.js-process-step-4 .tags-wrapper { justify-content: flex-end; }
-.process-step.js-process-step-4 .triangle-mask { margin: 24px 0 0; }
+.process-step.js-process-step-4 .dot { margin: 24px 0 0; }
 
 .process-slides .process-step .num {
     font-size: clamp(1.7rem, 4.25vw, 3.4rem);
@@ -351,11 +323,6 @@
     word-break: break-word;
     hyphens: auto;
 }
-
-.process-step .corner-triangle { width: 45px; height: 45px; }
-.js-process-step-2 .corner-triangle { clip-path: polygon(0 0, 60% 50%, 0 100%); }
-.js-process-step-3 .corner-triangle { clip-path: polygon(0 0, 60% 50%, 0 100%); }
-.js-process-step-4 .corner-triangle { clip-path: polygon(0 0, 100% 0, 50% 50%); }
 
 /* FOOTER & FORM */
 footer {
@@ -585,7 +552,7 @@ footer {
         font-size: 13px;
         line-height: 1.5;
     }
-    .process-step .triangle-mask { margin-bottom: 10px; }
+    .process-step .dot { margin-bottom: 10px; }
 }
 
 @media (max-width: 1200px) {
@@ -664,20 +631,10 @@ footer {
         flex-direction: column;
         padding: 40px 0;
     }
-    .intro-text, .intro-item .triangle-mask { width: 100%; }
-    .intro-item .intro-triangle {
-        width: 30px;
-        height: 18px;
-    }
-
-    .triangle-mask-45 {
-        width: 40px;
-        height: 30px;
-        margin: 3px -14px 0 0;
-    }
-    .corner-triangle-45 {
-        width: 12px;
-        height: 23px;
+    .intro-text { width: 100%; }
+    .dot {
+        width: 22px;
+        height: 22px;
     }
 
     .process-section {
@@ -701,16 +658,16 @@ footer {
         pointer-events: auto;
     }
     .process-step .tags-wrapper { justify-content: flex-start !important; }
-    .process-step .corner-triangle {
-        width: 30px;
-        height: 30px;
-    }
+    /*.process-step .dot {*/
+    /*    width: 30px;*/
+    /*    height: 30px;*/
+    /*}*/
     .process-step.js-process-step-2,
     .process-step.js-process-step-3 {
         gap: 0;
     }
-    .js-process-step-3 .triangle-mask,
-    .process-step.js-process-step-4 .triangle-mask {
+    .js-process-step-3 .dot,
+    .process-step.js-process-step-4 .dot {
         margin-left: auto;
     }
 

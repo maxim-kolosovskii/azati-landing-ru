@@ -101,7 +101,7 @@ gsap.set(linesReveal, { width: 0 });
 
 linesReveal.forEach(line => {
     gsap.to(line, {
-        width: '100%', duration: 1.5, ease: 'power3.inOut',
+        width: '100%', duration: 1.1, ease: 'power3.inOut',
         scrollTrigger: {
             trigger: line, start: 'top 92%', toggleActions: 'play none none none'
         }
@@ -142,24 +142,9 @@ imgWrappers.forEach((wrapper) => {
     );
 });
 
-// ================= 4. НАПРАВЛЕННЫЕ ОТРИСОВКИ ОРАНЖ. ТРЕУГОЛЬНИКОВ =================
-document.querySelectorAll('.js-triangle-reveal-left').forEach(mask => {
-    gsap.fromTo(mask.querySelector('.corner-triangle'), { x: "101%" }, { x: "0%", duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: mask, start: "top 85%" } });
-});
-
-document.querySelectorAll('.js-triangle-reveal-left-45').forEach(mask => {
-    gsap.fromTo(mask.querySelector('.corner-triangle-45'),
-        { x: "45%", y: "190%" },
-        { x: "0%", y: "0%", delay: 1.2, duration: 1.2, ease: "power4.out", scrollTrigger: { trigger: mask, start: "top 85%" } }
-    );
-});
-
-document.querySelectorAll('.js-triangle-reveal-right').forEach(mask => {
-    gsap.fromTo(mask.querySelector('.corner-triangle'), { x: "-101%" }, { x: "0%", duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: mask, start: "top 85%" } });
-});
-
-document.querySelectorAll('.js-triangle-reveal-down').forEach(mask => {
-    gsap.fromTo(mask.querySelector('div'), { y: "-101%" }, { y: "0%", duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: mask, start: "top 85%" } });
+// ================= 4. Анимация появления точек =================
+document.querySelectorAll('.js-dot-reveal').forEach(dot => {
+    gsap.fromTo(dot, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: dot, start: "top 85%" } });
 });
 
 // ================= 5. PREMIUM PROCESS TIMELINE =================
