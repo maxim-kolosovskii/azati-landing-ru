@@ -364,6 +364,7 @@ footer {
 }
 .footer-cta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12vh; gap: 50px; }
 .cta-left h2 { font-size: clamp(2rem, 4vw, 4.5rem); line-height: 1.15; letter-spacing: -1px; }
+.nowrap { white-space: nowrap; }
 .cta-right { max-width: 660px; width: 100%; }
 
 /* ================= FORM ================= */
