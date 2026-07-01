@@ -30,8 +30,9 @@
 
         :root {
             --bg-color: #E4E4E4;
+            --bg-dark-color: #0d0d0d;
             --text-color: #0A0A0A;
-            --accent-color: #FB8500;
+            --accent-color: #29a2ff;
             --grey: #888888;
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
             --base-font-size: 18px;
@@ -62,6 +63,9 @@
         h1, h2, h3, h4, .orange-text, .card-project-name, .logo {
             font-family: 'HeliosBold', sans-serif;
             font-weight: 700;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
         }
 
         a { text-decoration: none; color: inherit; display: inline-block; }
@@ -108,15 +112,17 @@
 
         /* ================= HEADER ================= */
         header {
+            color: #fff;
             height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             font-size: 12px;
-            position: fixed; top: 0; left: 0; width: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; max-width: 100vw;
             z-index: 100;
+            overflow: hidden;
             transition: background-color 0.4s ease, backdrop-filter 0.4s ease, transform 0.4s ease, opacity 0.4s ease, height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         header.is-scrolled {
-            background-color: rgba(228, 228, 228, 0.85);
+            background-color: rgba(13, 13, 13, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(14px);
             height: 68px;
@@ -132,12 +138,15 @@
             align-items: center;
             gap: 4vw;
             font-weight: 500;
+            text-align: right;
         }
         .nav-item { transition: color 0.3s ease, transform 0.3s ease; }
         .nav-item:hover { color: var(--accent-color); transform: translateY(-1px); }
 
         /* ================= HERO ================= */
         .hero {
+            background-color: var(--bg-dark-color);
+            color: #fff;
             width: 100%;
             display: flex;
             align-items: center;
@@ -147,7 +156,7 @@
         .hero-inner {
             height: 100%;
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
             align-items: flex-start;
             justify-content: center;
             position: relative;
@@ -201,6 +210,7 @@
                 padding: 0 20px;
             }
             .header-nav { display: none; }
+            .header-right { gap: 3vw; font-size: 11px; }
             .hero h1 { font-size: 2.4rem; }
         }
         @media (min-width: 576px) {
@@ -247,18 +257,18 @@
         <canvas class="webgl-canvas" id="webgl-canvas"></canvas>
 
         <div class="hero-inner container">
-            <div class="hero-desc-wrapper">
-                <div class="hero-desc">ПРОДУМАННЫЕ ИНТЕРФЕЙСЫ НА ОСНОВЕ СТРАТЕГИИ, ЯСНОСТИ И ИЗМЕРИМЫХ РЕЗУЛЬТАТОВ.</div>
-            </div>
-
             <div class="hero-title-wrapper">
                 <h1 class="hero-title">
-                    <span class="orange-text">ДИЗАЙН, КОТОРЫЙ<br>ПРОДАЁТ.</span><br>
-                    <span class="white-text">А НЕ ПРОСТО<br>КАРТИНКА.</span>
+                    <span class="orange-text">ДИЗАЙН, КОТОРЫЙ<br>ПРОДАЁТ,</span><br>
+                    <span class="white-text">А НЕ ПРОСТО<br>ВЫГЛЯДИТ КРАСИВО.</span>
                     <span class="arrow-mask">
                             <span class="css-arrow"></span>
                         </span>
                 </h1>
+            </div>
+
+            <div class="hero-desc-wrapper">
+                <div class="hero-desc">ПРОДУМАННЫЕ ИНТЕРФЕЙСЫ НА ОСНОВЕ СТРАТЕГИИ, ПОНЯТНОЙ СТРУКТУРЫ И ИЗМЕРИМЫХ РЕЗУЛЬТАТОВ.</div>
             </div>
         </div>
     </section>
@@ -280,7 +290,7 @@
                         <li>Бренд-айдентика</li>
                         <li>Графический дизайн</li>
                         <li>Мобильные</li>
-                        <li>ИИ</li>
+                        <li>AI</li>
                     </ul>
                 </div>
 
@@ -300,7 +310,7 @@
                             </picture>
                         </div>
                         <div class="card-meta">
-                            <h4 class="card-project-name">Med Now промо</h4>
+                            <h4 class="card-project-name">Med Now — промо</h4>
                             <div class="meta-bottom-row">
                                 <div class="tags-wrapper">
                                     <span class="tag">UI/UX Дизайн</span>
@@ -328,7 +338,7 @@
                             </picture>
                         </div>
                         <div class="card-meta">
-                            <h4 class="card-project-name">818 Drums сайт</h4>
+                            <h4 class="card-project-name">818 Drums — сайт</h4>
                             <div class="meta-bottom-row">
                                 <div class="tags-wrapper">
                                     <span class="tag">UI/UX Дизайн</span>
@@ -419,7 +429,7 @@
                             </picture>
                         </div>
                         <div class="card-meta">
-                            <h4 class="card-project-name">Anomalyze промо</h4>
+                            <h4 class="card-project-name">Anomalyze — промо</h4>
                             <div class="meta-bottom-row">
                                 <div class="tags-wrapper">
                                     <span class="tag">Дашборды</span>
@@ -427,9 +437,9 @@
                                     <span class="tag">Логотипы</span>
                                     <span class="tag">Продуктовый дизайн</span>
                                 </div>
-                                                                <a href="#" class="view-btn">
-                                                                    Смотреть <span class="btn-arrow">↗</span>
-                                                                </a>
+<!--                                <a href="#" class="view-btn">-->
+<!--                                    Смотреть <span class="btn-arrow">↗</span>-->
+<!--                                </a>-->
                             </div>
                         </div>
                     </div>
@@ -448,7 +458,7 @@
                             </picture>
                         </div>
                         <div class="card-meta">
-                            <h4 class="card-project-name">District Бренд-айдентика</h4>
+                            <h4 class="card-project-name">District — бренд-айдентика</h4>
                             <div class="meta-bottom-row">
                                 <div class="tags-wrapper">
                                     <span class="tag">Веб-дизайн</span>
@@ -456,7 +466,7 @@
                                     <span class="tag">UI/UX Дизайн</span>
                                     <span class="tag">Мобильный дизайн</span>
                                     <span class="tag">Визуальная айдентика</span>
-                                    <span class="tag">ИИ-арт</span>
+                                    <span class="tag">AI-арт</span>
                                     <span class="tag">Адаптивный дизайн</span>
                                 </div>
                                 <!--                                <a href="#" class="view-btn">-->
@@ -480,12 +490,12 @@
                             </picture>
                         </div>
                         <div class="card-meta">
-                            <h4 class="card-project-name">Unika Бренд-айдентика</h4>
+                            <h4 class="card-project-name">Unika — бренд-айдентика</h4>
                             <div class="meta-bottom-row">
                                 <div class="tags-wrapper">
                                     <span class="tag">Продуктовый дизайн</span>
                                     <span class="tag">Бренд-айдентика</span>
-                                    <span class="tag">Логотипы</span>
+                                    <span class="tag">Логотип</span>
                                     <span class="tag">Визуальная айдентика</span>
                                     <span class="tag">Визуальная коммуникация</span>
                                     <span class="tag">Цифровой дизайн</span>
@@ -519,8 +529,8 @@
                             <div class="intro-triangle"></div>
                         </div>
                         <div class="intro-text">
-                            <p style="margin-bottom: 20px;">Наши ключевые компетенции — где идеи обретают форму.</p>
-                            <p>От бренд-айдентики до цифрового опыта — каждая дисциплина направлена на создание продуктов, которые ощущаются осмысленными, ясными и долговечными.</p>
+                            <p style="margin-bottom: 20px;">Наши ключевые компетенции — там, где идеи обретают форму.</p>
+                            <p>От бренд-айдентики до цифровых продуктов — мы создаём решения, которые выглядят цельно, работают понятно и остаются актуальными надолго.</p>
                         </div>
                     </div>
                 </div>
@@ -535,7 +545,7 @@
                     </div>
                     <div class="service-bottom">
                         <div class="service-desc">
-                            <p>Мы проектируем интуитивные цифровые решения, где ясность, удобство и визуальное направление работают слаженно — связывая потребности пользователей с бизнес-целями через продуманный UI/UX и веб-дизайн.</p>
+                            <p>Мы проектируем интуитивные цифровые интерфейсы, где логика, удобство и визуальная иерархия работают вместе. В основе — User Journey Map, User Flow, User Story, CJM, исследования и Design Thinking, чтобы связать задачи пользователей с бизнес-целями.</p>
                         </div>
                         <div class="service-img">
                             <img src="img/service-anomalyze.webp" alt="UI/UX и веб-дизайн" width="550" height="367" loading="lazy" decoding="async">
@@ -553,7 +563,7 @@
                     </div>
                     <div class="service-bottom">
                         <div class="service-desc">
-                            <p>Мы создаём бренд-айдентику, основанную на ясности, последовательности и осмысленных визуальных системах. Определяя позиционирование, тон и ключевые элементы бренда, мы выравниваем восприятие с бизнес-целями — создавая уникальные идентичности, которые естественно масштабируются в цифровом и физическом пространстве.</p>
+                            <p>Мы создаём бренд-айдентику, основанную на ясной стратегии, последовательности и продуманной визуальной системе. От позиционирования и тональности до ключевых визуальных элементов — всё работает на узнаваемость и легко масштабируется в digital и offline-среде.</p>
                         </div>
                         <div class="service-img">
                             <video
@@ -579,7 +589,7 @@
                     </div>
                     <div class="service-bottom">
                         <div class="service-desc">
-                            <p>Мы разрабатываем графические материалы, которые коммуницируют ясно и остаются консистентными с вашим брендом. От вёрстки и типографики до упаковки и печати — мы переводим визуальную айдентику в выразительные, целостные активы на всех точках контакта.</p>
+                            <p>Мы разрабатываем графические материалы, которые чётко доносят сообщение и сохраняют единство с брендом. От макетов и типографики до упаковки и печатных материалов — создаём выразительные, цельные визуальные решения для всех точек контакта.</p>
                         </div>
                         <div class="service-img">
                             <img src="img/service-graph.webp" alt="Графический дизайн" width="550" height="367" loading="lazy" decoding="async">
@@ -604,7 +614,7 @@
                     <div class="process-content">
                         <div class="num">01</div>
                         <h3>Стратегия</h3>
-                        <p>Мы начинаем с понимания реальной проблемы за брифингом. Через исследование и анализ мы определяем цели, ограничения и логику продукта.</p>
+                        <p>Мы начинаем с понимания реальной задачи, а не только с брифа. Через исследование, анализ и аудит определяем цели, ограничения и логику продукта.</p>
                         <div class="tags-wrapper">
                             <span class="tag">UX-исследования</span>
                             <span class="tag">Продуктовая стратегия</span>
@@ -622,7 +632,7 @@
                     <div class="process-content">
                         <div class="num">02</div>
                         <h3>Пользовательский опыт</h3>
-                        <p>Мы превращаем стратегию в интуитивный пользовательский опыт через продуманную структуру, бесшовные сценарии и взаимодействия, спроектированные вокруг реального поведения пользователей.</p>
+                        <p>Мы превращаем стратегию в понятный пользовательский путь через структуру, сценарии и взаимодействия, выстроенные вокруг реального поведения людей.</p>
                         <div class="tags-wrapper">
                             <span class="tag">User Flows</span>
                             <span class="tag">Вайрфреймы</span>
@@ -637,7 +647,7 @@
                     <div class="process-content">
                         <div class="num">03</div>
                         <h3>Дизайн</h3>
-                        <p>Мы переводим структуру в ясные, масштабируемые визуальные системы. От UI до бренд-айдентики — всё консистентно и готово к производству.</p>
+                        <p>Мы переводим структуру в ясную и масштабируемую визуальную систему. От UI до бренд-айдентики — всё выглядит цельно и готово к разработке.</p>
                         <div class="tags-wrapper">
                             <span class="tag">UI Дизайн</span>
                             <span class="tag">Дизайн-системы</span>
@@ -655,7 +665,7 @@
                     <div class="process-content">
                         <div class="num">04</div>
                         <h3>Взаимодействие</h3>
-                        <p>Мы используем движение осмысленно. Микро-взаимодействия и переходы создают более плавный и отзывчивый цифровой опыт.</p>
+                        <p>Мы осмысленно используем движение и микровзаимодействия. Переходы, анимации и фидбэк делают интерфейс более живым, понятным и отзывчивым.</p>
                         <div class="tags-wrapper">
                             <span class="tag">Микро-взаимодействия</span>
                             <span class="tag">Анимация</span>
@@ -678,7 +688,7 @@
             <div class="cta-left">
                 <h2>
                     <span class="orange-text">Вы готовы</span><br>
-                    <span class="white-text">Создать<br>что-то новое</span>
+                    <span class="white-text">создать<br>что-то новое?</span>
                 </h2>
             </div>
 
