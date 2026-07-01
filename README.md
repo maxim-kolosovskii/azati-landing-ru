@@ -1,28 +1,33 @@
-# AZATI — Design that converts
+# AZATI — Дизайн, который продаёт
 
-Landing page for [AZATI](https://azati.ai/) — a design team specializing in UI/UX, web & graphic design, motion, branding, and app design.
+Русскоязычная версия лендинга [AZATI](https://azati.ai/) — дизайн-команда, специализирующаяся на UI/UX, веб- и графическом дизайне, анимации, брендинге и проектировании интерфейсов.
 
-## Stack
+## Отличия от основной версии
 
-- **Vite** — build tool
-- **GSAP** — animations
-- **Three.js** — 3D graphics
-- **Lenis** — smooth scrolling
+- **Светлая тема** — фон `#E4E4E4`, текст `#0A0A0A`, акцентный `#29a2ff`
+- **Полная локализация** — весь контент переведён на русский язык
+
+## Стек
+
+- **Vite** — сборка
+- **GSAP** — анимации
+- **Three.js** — 3D-графика
+- **Lenis** — плавный скролл
 - Vanilla HTML/CSS/JS
 
-## Development
+## Разработка
 
 ```bash
 npm install
-npm run dev      # dev server with HMR
-npm run build    # production build → dist/
-npm run preview  # preview production build locally
+npm run dev      # дев-сервер с HMR
+npm run build    # продакшен-сборка → dist/
+npm run preview  # предпросмотр продакшен-сборки
 ```
 
-## Deployment
+## Деплой
 
-Deployed via [Vercel](https://vercel.com) from GitHub. Vercel auto-detects Vite — no extra config needed.
+Деплоится через [Vercel](https://vercel.com) из GitHub. Vercel автоматически определяет Vite — дополнительная настройка не нужна.
 
-## License
+## Лицензия
 
 MIT

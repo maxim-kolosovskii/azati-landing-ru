@@ -286,9 +286,9 @@ if (workSection) {
                     isMatch = cardTags.some(tag => tag.includes('graphic') || tag.includes('графич'));
                 } else if (filterText === 'мобильные') {
                     isMatch = cardTags.some(tag => tag.includes('mobile') || tag.includes('мобильн'));
-                } else if (filterText === 'ии') {
+                } else if (filterText === 'ai') {
                     isMatch = cardTags.some(tag =>
-                        tag === 'ai' || tag.startsWith('ai ') || tag.includes(' ai ') || tag === 'ии' || tag.includes('ии-')
+                        tag === 'ai' || tag.startsWith('ai ') || tag.startsWith('ai-') || tag.includes(' ai ') || tag.includes(' ai-') || tag.includes('ии')
                     );
                 }
 
@@ -465,7 +465,7 @@ const geometry = new THREE.BufferGeometry();
 geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 const material = new THREE.PointsMaterial({
-    color: 0xFB8500, size: 0.158, transparent: true, opacity: 0.65,
+    color: 0x29a2ff, size: 0.158, transparent: true, opacity: 0.65,
     blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
 });
 
