@@ -70,7 +70,7 @@ gsap.fromTo(['.hero-title', '.hero-desc'],
 );
 
 // Появление стрелки в Hero
-gsap.fromTo('.css-arrow', { x: -45 }, { x: 0, duration: 0.4, ease: 'power4.out', delay: 1.3 });
+gsap.fromTo('.css-dot', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'power4.out', delay: 1.3 });
 
 // Реакция на движение мыши
 const heroSection = document.querySelector('.hero');
@@ -516,14 +516,12 @@ function animate() {
         const dx = x - intersectionPoint.x;
         const dy = y - intersectionPoint.y;
 
-        // Математический расчет длинны сторон и угла наклона шеврона (>)
-        const slope = 0.9;
-        const chevronLength = 5;
-        const lineDist = Math.abs(Math.abs(dy) - slope * (chevronLength - dx));
+        // Круглая точка взаимодействия
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const radius = 11;
 
-        // Расталкивание точек в форме шеврона (убрана левая сторона рамки)
-        if (dx >= -8 && dx <= 10 && lineDist < 2.5) {
-            const force = (2.5 - lineDist) / 2.5;
+        if (dist < radius) {
+            const force = (radius - dist) / radius;
 
             velocity.x += dx * force * 0.018;
             velocity.y += dy * force * 0.018;

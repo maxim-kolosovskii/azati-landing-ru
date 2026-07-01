@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AZATI — Дизайн, который продаёт</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
     <style>
         /* ================= BASE STYLES ================= */
@@ -54,15 +57,15 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'HeliosExt', sans-serif;
+            font-family: 'Golos Text', 'HeliosExt', sans-serif;
             font-size: 1rem;
             overflow-x: hidden;
             text-transform: uppercase;
         }
 
-        h1, h2, h3, h4, .orange-text, .card-project-name, .logo {
-            font-family: 'HeliosBold', sans-serif;
-            font-weight: 700;
+        h1, h2, h3, h4, .accent-text, .card-project-name, .logo {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 800;
             overflow-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
@@ -77,30 +80,29 @@
             margin: 0 auto;
         }
 
-        .orange-text { color: var(--accent-color); }
+        .accent-text { color: var(--accent-color); }
         .white-text {
-            font-family: 'HeliosExt', sans-serif;
+            font-family: 'Golos Text', 'HeliosExt', sans-serif;
             font-weight: 400;
         }
 
         .arrow-mask {
             display: inline-flex;
             overflow: hidden;
-            vertical-align: middle;
-            margin: -10px 0 10px 15px;
+            vertical-align: baseline;
+            margin-left: 8px;
             height: 1em;
-            align-items: center;
+            align-items: flex-end;
         }
 
-        .css-arrow {
+        .css-dot {
             display: inline-block;
-            width: 0; height: 0;
-            border-top: 0.39em solid transparent;
-            border-bottom: 0.39em solid transparent;
-            border-left: 0.39em solid var(--accent-color);
-            transform: translateX(-45px);
-            opacity: 1;
-            will-change: transform;
+            width: 0.4em; height: 0.4em;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            transform: scale(0);
+            opacity: 0;
+            will-change: transform, opacity;
         }
 
         .btn-arrow {
@@ -109,6 +111,24 @@
         }
         button .btn-arrow { font-size: 1.4rem; margin-left: 10px; }
         a:hover .btn-arrow, button:hover .btn-arrow { transform: translate(5px, -5px); }
+
+        .pill-btn {
+            display: inline-block;
+            border-radius: 50px;
+            background-color: #fff;
+            padding: 12px 28px;
+            color: var(--text-color);
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .pill-btn:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
 
         /* ================= HEADER ================= */
         header {
@@ -204,7 +224,7 @@
 
         @media (max-width: 575.98px) {
             .container { padding: 0 20px; }
-            .arrow-mask { margin: -5px 0 5px 5px; }
+            .arrow-mask { margin-left: 4px; }
             header,
             header.is-scrolled {
                 padding: 0 20px;
@@ -216,7 +236,7 @@
         @media (min-width: 576px) {
             .container { padding: 0 40px; }
 
-            .arrow-mask { margin: -5px 0 5px 10px; }
+            .arrow-mask { margin-left: 6px; }
 
             header,
             header.is-scrolled {
@@ -224,10 +244,10 @@
             }
             .header-nav { display: flex; gap: 4vw; }
 
-            .hero h1 { font-size: clamp(2.8rem, 6.5vw, 5.5rem); }
+            .hero h1 { font-size: clamp(2.5rem, 5vw, 5.5rem); }
         }
         @media (min-width: 992px) {
-            .arrow-mask { margin: -10px 0 10px 15px; }
+            .arrow-mask { margin-left: 8px; }
 
             .hero { height: 100vh; position: fixed; z-index: 1; }
             .hero-inner { gap: 0; }
@@ -240,7 +260,7 @@
 
 <header id="site-header">
     <a href="https://azati.ai/" target="_blank" class="logo">
-        <img src="img/azati-logo-design.svg" alt="AZATI Logo" width="150" height="30" decoding="sync">
+        <img src="img/azati-logo-blue.svg" alt="AZATI Logo" width="181" height="48" decoding="sync">
     </a>
     <div class="header-right">
         <nav class="header-nav">
@@ -248,7 +268,7 @@
             <a href="#services" class="nav-item">УСЛУГИ</a>
             <a href="#process" class="nav-item">ПРОЦЕСС</a>
         </nav>
-        <a href="#contact" class="orange-text">ОБСУДИМ ПРОЕКТ <span class="btn-arrow">↗</span></a>
+        <a href="#contact" class="pill-btn">ОБСУДИМ ПРОЕКТ</a>
     </div>
 </header>
 
@@ -259,16 +279,17 @@
         <div class="hero-inner container">
             <div class="hero-title-wrapper">
                 <h1 class="hero-title">
-                    <span class="orange-text">ДИЗАЙН, КОТОРЫЙ<br>ПРОДАЁТ,</span><br>
-                    <span class="white-text">А НЕ ПРОСТО<br>ВЫГЛЯДИТ КРАСИВО.</span>
+                    <span class="accent-text">Дизайн, который</span><br>
+                    <span class="white-text">решает задачи</span>
                     <span class="arrow-mask">
-                            <span class="css-arrow"></span>
+                            <span class="css-dot"></span>
                         </span>
                 </h1>
             </div>
 
             <div class="hero-desc-wrapper">
-                <div class="hero-desc">ПРОДУМАННЫЕ ИНТЕРФЕЙСЫ НА ОСНОВЕ СТРАТЕГИИ, ПОНЯТНОЙ СТРУКТУРЫ И ИЗМЕРИМЫХ РЕЗУЛЬТАТОВ.</div>
+<!--                <div class="hero-desc">ПРОДУМАННЫЕ ИНТЕРФЕЙСЫ НА ОСНОВЕ СТРАТЕГИИ, ПОНЯТНОЙ СТРУКТУРЫ И ИЗМЕРИМЫХ РЕЗУЛЬТАТОВ.</div>-->
+                <div class="hero-desc">UI/UX ДИЗАЙН, ВЕБ-ДИЗАЙН И БРЕНД-АЙДЕНТИКА ДЛЯ САЙТОВ, СЕРВИСОВ И ЦИФРОВЫХ ПРОДУКТОВ</div>
             </div>
         </div>
     </section>
@@ -316,6 +337,34 @@
                                     <span class="tag">UI/UX Дизайн</span>
                                     <span class="tag">Бренд-айдентика</span>
                                     <span class="tag">Мобильные</span>
+                                </div>
+<!--                                                                <a href="#" class="view-btn">-->
+<!--                                                                    Смотреть <span class="btn-arrow">↗</span>-->
+<!--                                                                </a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="img-wrapper">
+                            <picture>
+                                <source media="(max-width: 799px)" srcset="img/case-zavarka-m.webp">
+                                <img
+                                        src="img/case-zavarka.webp"
+                                        alt="Брендирование чая Zavarka"
+                                        width="973"
+                                        height="670"
+                                        loading="lazy"
+                                        decoding="async"
+                                >
+                            </picture>
+                        </div>
+                        <div class="card-meta">
+                            <h4 class="card-project-name">Брендирование чая Zavarka</h4>
+                            <div class="meta-bottom-row">
+                                <div class="tags-wrapper">
+                                    <span class="tag">UI/UX Дизайн</span>
+                                    <span class="tag">Бренд-айдентика</span>
+                                    <span class="tag">Логотипы</span>
                                 </div>
 <!--                                                                <a href="#" class="view-btn">-->
 <!--                                                                    Смотреть <span class="btn-arrow">↗</span>-->
@@ -687,7 +736,7 @@
         <div class="footer-cta reveal">
             <div class="cta-left">
                 <h2>
-                    <span class="orange-text">Вы готовы</span><br>
+                    <span class="accent-text">Вы готовы</span><br>
                     <span class="white-text">создать<br>что-то <span class="nowrap">новое?</span></span>
                 </h2>
             </div>
@@ -865,9 +914,8 @@
 
                         <!-- SUBMIT -->
                         <fieldset class="form__group">
-                            <button class="submit-btn" type="submit">
+                            <button class="submit-btn pill-btn" type="submit">
                                 ОТПРАВИТЬ
-                                <span class="btn-arrow">↗</span>
                             </button>
                         </fieldset>
                     </div>
@@ -894,24 +942,26 @@
         </div>
     </div>
 
-    <div class="w100-divider js-line-reveal"></div>
+    <div class="footer-dark">
+        <div class="w100-divider js-line-reveal"></div>
 
-    <div class="footer-inner container">
-        <div class="footer-bottom">
-            <div class="footer-menu-left">
-                <a href="#work" class="footer-link">РАБОТЫ</a>
-                <a href="#services" class="footer-link">УСЛУГИ</a>
-                <a href="#process" class="footer-link">ПРОЦЕСС</a>
-            </div>
+        <div class="footer-inner container">
+            <div class="footer-bottom">
+                <div class="footer-menu-left">
+                    <a href="#work" class="footer-link">РАБОТЫ</a>
+                    <a href="#services" class="footer-link">УСЛУГИ</a>
+                    <a href="#process" class="footer-link">ПРОЦЕСС</a>
+                </div>
 
-            <div class="footer-menu-right">
-                <a href="https://www.linkedin.com/company/azati-corporation" target="_blank" class="footer-link">LINKEDIN</a>
-                <a href="https://www.behance.net/azati" target="_blank" class="footer-link">BEHANCE</a>
+                <div class="footer-menu-right">
+                    <a href="https://www.linkedin.com/company/azati-corporation" target="_blank" class="footer-link">LINKEDIN</a>
+                    <a href="https://www.behance.net/azati" target="_blank" class="footer-link">BEHANCE</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <img src="img/azati-logo-design.svg" alt="AZATI Logo" class="footer-logo reveal" loading="lazy" decoding="async">
+        <img src="img/azati-logo-blue.svg" alt="AZATI Logo" class="footer-logo reveal" loading="lazy" decoding="async">
+    </div>
 </footer>
 
 <script type="module" src="/src/main.js"></script>

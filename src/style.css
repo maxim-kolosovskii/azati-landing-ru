@@ -22,7 +22,7 @@
 .stagger-header .sub-title {
     display: block;
     font-size: 1rem;
-    font-family: 'HeliosExt', sans-serif;
+    font-family: 'Golos Text', 'HeliosExt', sans-serif;
     font-weight: 400;
     margin-bottom: 8px;
 }
@@ -200,7 +200,7 @@
 .service-top { display: flex; align-items: center; gap: 4vw; }
 .service-top .num {
     font-size: clamp(2rem, 4.25vw, 4rem);
-    font-family: 'HeliosExt', sans-serif;
+    font-family: 'Golos Text', 'HeliosExt', sans-serif;
     font-weight: 400;
     line-height: 1;
     width: 45%;
@@ -332,7 +332,7 @@
 
 .process-slides .process-step .num {
     font-size: clamp(1.7rem, 4.25vw, 3.4rem);
-    font-family: 'HeliosExt', sans-serif;
+    font-family: 'Golos Text', 'HeliosExt', sans-serif;
     font-weight: 400;
     margin-bottom: 10px;
 }
@@ -361,6 +361,10 @@
 footer {
     width: 100%; padding: 12vh 0 0;
     background: var(--bg-color); position: relative; z-index: 2; overflow: hidden;
+}
+.footer-dark {
+    background-color: var(--bg-dark-color);
+    color: #fff;
 }
 .footer-cta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12vh; gap: 50px; }
 .cta-left h2 { font-size: clamp(2rem, 4vw, 4.5rem); line-height: 1.15; letter-spacing: -1px; }
@@ -395,7 +399,7 @@ footer {
 .form__label {
     display: block;
     margin-bottom: 12px;
-    font-family: 'HeliosExt', sans-serif;
+    font-family: 'Golos Text', 'HeliosExt', sans-serif;
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -414,7 +418,7 @@ footer {
     outline: none;
     padding: 0 0 18px;
     color: var(--text-color);
-    font-family: 'HeliosExt', sans-serif;
+    font-family: 'Golos Text', 'HeliosExt', sans-serif;
     font-size: 0.75rem;
     text-transform: uppercase;
     transition:
@@ -444,7 +448,7 @@ footer {
     gap: 10px;
     cursor: pointer;
     color: var(--accent-color);
-    font-family: 'HeliosBold', sans-serif;
+    font-family: 'Golos Text', sans-serif;
     font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -499,22 +503,8 @@ footer {
 }
 
 .submit-btn {
-    background: transparent;
-    border: none;
-    color: var(--accent-color);
-    font-family: 'HeliosBold', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
-}
-.submit-btn:hover {
-    opacity: 0.8;
 }
 
 /* ERRORS */
@@ -534,7 +524,7 @@ footer {
     border: 1px solid #cc3333;
     background: rgba(204, 51, 51, 0.15);
     color: #cc3333;
-    font-family: 'HeliosBold', sans-serif;
+    font-family: 'Golos Text', sans-serif;
     font-size: 12px;
     letter-spacing: 0.08em;
 }
@@ -556,7 +546,7 @@ footer {
     border: 1px solid #01ca7f;
     background: rgba(0, 225, 141, 0.15);
     color: #01ca7f;
-    font-family: 'HeliosBold', sans-serif;
+    font-family: 'Golos Text', sans-serif;
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
