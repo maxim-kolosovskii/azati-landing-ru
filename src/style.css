@@ -110,7 +110,7 @@
     object-fit: cover;
 }
 .card-meta { background-color: var(--bg-color); padding: 25px 0; }
-.card-project-name { font-size: 16px; color: var(--text-color); margin-bottom: 20px; font-weight: 700; letter-spacing: 0.5px; }
+.card-project-name { font-size: 16px; color: var(--text-color); margin-bottom: 20px; font-weight: 600; letter-spacing: 0.5px; }
 .meta-bottom-row { display: flex; justify-content: space-between; align-items: end; gap: 20px; }
 
 .tags-wrapper {
@@ -327,7 +327,7 @@
 /* FOOTER & FORM */
 footer {
     width: 100%; padding: 12vh 0 0;
-    background: var(--bg-color); position: relative; z-index: 2; overflow: hidden;
+    background: var(--bg-color); position: relative; z-index: 2;
 }
 .footer-dark {
     background-color: var(--bg-dark-color);
@@ -416,7 +416,7 @@ footer {
     cursor: pointer;
     color: var(--accent-color);
     font-family: 'Golos Text', sans-serif;
-    font-size: 13px;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     transition:
@@ -538,7 +538,7 @@ footer {
     font-weight: 400;
 }
 .footer-menu-left, .footer-menu-right { display: flex; align-items: center; gap: 2.5vw; flex-wrap: wrap; }
-.footer-link { font-size: 12px; transition: color 0.3s ease, transform 0.3s ease; }
+.footer-link { font-size: 14px; transition: color 0.3s ease, transform 0.3s ease; }
 .footer-link:hover { color: var(--accent-color); transform: translateY(-1px); }
 .footer-logo { width: 100%; margin: 0; display: block; }
 

@@ -27,6 +27,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Обновление скролла при валидации формы
+document.querySelector('.contact-form')?.addEventListener('submit', () => {
+    setTimeout(() => { lenis.resize(); ScrollTrigger.refresh(); }, 100);
+});
+document.querySelector('.contact-form')?.addEventListener('invalid', () => {
+    setTimeout(() => { lenis.resize(); ScrollTrigger.refresh(); }, 100);
+}, true);
+
 // ================= 2. Умное поведение Sticky-хедера =================
 const headerNode = document.getElementById('site-header');
 const footer = document.getElementById('contact');
@@ -503,7 +511,7 @@ function animate() {
 
         // Круглая точка взаимодействия
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const radius = 11;
+        const radius = 8;
 
         if (dist < radius) {
             const force = (radius - dist) / radius;

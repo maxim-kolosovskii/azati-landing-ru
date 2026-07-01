@@ -6,7 +6,7 @@
     <title>AZATI — Дизайн, который продаёт</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@100;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
     <style>
         /* ================= BASE STYLES ================= */
@@ -16,7 +16,7 @@
             src:
                     url('/fonts/heliosext-bold.woff2') format('woff2'),
                     url('/fonts/heliosext-bold.woff') format('woff');
-            font-weight: 700;
+            font-weight: 600;
             font-style: normal;
             font-display: swap;
         }
@@ -65,7 +65,7 @@
 
         h1, h2, h3, h4, .accent-text, .card-project-name, .logo {
             font-family: 'Golos Text', sans-serif;
-            font-weight: 800;
+            font-weight: 600;
             overflow-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
@@ -115,13 +115,13 @@
         .pill-btn {
             display: inline-block;
             border-radius: 50px;
-            background-color: #fff;
-            padding: 12px 28px;
-            color: var(--text-color);
+            background-color: transparent;
+            padding: 10px 26px;
+            color: var(--accent-color);
             font-family: 'Golos Text', sans-serif;
             font-weight: 600;
             font-size: 12px;
-            border: none;
+            border: 1px solid var(--accent-color);
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -135,7 +135,7 @@
             color: #fff;
             height: 90px;
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 12px;
+            font-size: 14px;
             position: fixed; top: 0; left: 0; width: 100%; max-width: 100vw;
             z-index: 100;
             overflow: hidden;
@@ -259,7 +259,7 @@
 <body>
 
 <header id="site-header">
-    <a href="https://azati.ai/" target="_blank" class="logo">
+    <a href="https://азати.рф/" target="_blank" class="logo">
         <img src="img/azati-logo-blue.svg" alt="AZATI Logo" width="181" height="48" decoding="sync">
     </a>
     <div class="header-right">
@@ -774,8 +774,7 @@
                             <span id="full-name_error" class="form-error"></span>
                             <!--                                {% if general.name.errors %}-->
                             <div class="invalid-feedback">
-                                <!--                                    {{ general.name.errors|join:", " }}-->
-                                Ошибка имени
+                                Пожалуйста, укажите ваше имя
                             </div>
                             <!--                                {% endif %}-->
                         </fieldset>
@@ -798,8 +797,7 @@
                             <span id="email_error" class="form-error"></span>
                             <!--                                {% if general.email.errors %}-->
                             <div class="invalid-feedback">
-                                <!--                                    {{ general.email.errors|join:", " }}-->
-                                Ошибка почты
+                                Пожалуйста, укажите корректный email
                             </div>
                             <!--                                {% endif %}-->
                         </fieldset>
@@ -821,8 +819,7 @@
                         <span id="form-phone_error" class="form-error"></span>
                         <!--                            {% if career.phone.errors %}-->
                         <div class="invalid-feedback">
-                            <!--                                {{ career.phone.errors|join:", " }}-->
-                            Ошибка телефона
+                            Пожалуйста, укажите номер телефона
                         </div>
                         <!--                            {% endif %}-->
                     </fieldset>
@@ -843,8 +840,7 @@
                         <span id="message_error" class="form-error"></span>
                         <!--                            {% if general.message.errors %}-->
                         <div class="invalid-feedback">
-                            <!--                                {{ general.message.errors|join:", " }}-->
-                            Ошибка сообщения
+                            Пожалуйста, напишите ваш запрос
                         </div>
                         <!--                            {% endif %}-->
                     </fieldset>
@@ -870,8 +866,7 @@
                         <span id="form-file_error" class="form-error"></span>
                         <!--                            {% if general.file.errors %}-->
                         <div class="invalid-feedback">
-                            <!--                                {{ general.file.errors|join:", " }}-->
-                            Ошибка добавления файла
+                            Пожалуйста, прикрепите файл
                         </div>
                         <!--                            {% endif %}-->
                     </fieldset>
@@ -898,8 +893,7 @@
                             <span id="policy-checkbox_error" class="form-error"></span>
                             <!--                                {% if general.consent.errors %}-->
                             <div class="invalid-feedback">
-                                <!--                                    {{ general.consent.errors|join:", " }}-->
-                                Ошибка чекбокса
+                                Пожалуйста, примите условия обработки данных
                             </div>
                             <!--                                {% endif %}-->
                         </fieldset>
@@ -914,15 +908,12 @@
 
                     <!-- SUCCESS -->
                     <div class="form-success">
-                        Ваш запрос успешно отправлен.
+                        Спасибо! Ваш запрос успешно отправлен.
                     </div>
 
                     <!-- ERROR -->
                     <div class="error__container__general">
-                        <!--                            {% if general_error_message %}-->
-                        <!--                            {% include 'components/error-message.html' %}-->
-                        <!--                            {% endif %}-->
-                        Ошибка отправки
+                        Пожалуйста, проверьте правильность заполнения формы
                     </div>
 
                     <div class="form__caption">
