@@ -35,6 +35,26 @@ document.querySelector('.contact-form')?.addEventListener('invalid', () => {
     setTimeout(() => { lenis.resize(); ScrollTrigger.refresh(); }, 100);
 }, true);
 
+// Пауза скролла при входе в футер
+let scrollPaused = false;
+const footerStopTrigger = ScrollTrigger.create({
+    trigger: '.footer-cta',
+    start: 'top 22%',
+    onEnter: () => {
+        if (scrollPaused) return;
+        scrollPaused = true;
+        lenis.stop();
+        setTimeout(() => { lenis.start(); scrollPaused = false; }, 1500);
+    },
+    onLeaveBack: () => { scrollPaused = false; lenis.start(); }
+});
+
+// Пересчёт позиций после загрузки всех медиа
+window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+    footerStopTrigger.refresh();
+});
+
 // ================= 2. Умное поведение Sticky-хедера =================
 const headerNode = document.getElementById('site-header');
 const footer = document.getElementById('contact');

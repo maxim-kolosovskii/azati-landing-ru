@@ -227,7 +227,10 @@
 
 .service-img video {
     display: block;
-    width: 100%;
+    /*width: 100%;*/
+    width: 103.5%;
+    position: absolute;
+    right: 0;
 }
 
 .intro-item {
@@ -309,7 +312,7 @@
     margin-bottom: 10px;
 }
 .process-slides .process-step h3 {
-    font-size: clamp(1.7rem, 4.25vw, 3.4rem);
+    font-size: clamp(1.8rem, 4.25vw, 3.4rem);
     margin-bottom: 20px;
     letter-spacing: -1px;
     overflow-wrap: break-word;
@@ -334,7 +337,7 @@ footer {
     color: #fff;
 }
 .footer-cta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12vh; gap: 50px; }
-.cta-left h2 { font-size: clamp(2rem, 4vw, 4.5rem); line-height: 1.15; letter-spacing: -1px; }
+.cta-left h2 { font-size: clamp(2.3rem, 4vw, 4.5rem); line-height: 1.15; letter-spacing: -1px; }
 .nowrap { white-space: nowrap; }
 .cta-right { max-width: 660px; width: 100%; }
 
@@ -544,7 +547,7 @@ footer {
 
 /* ================= RESPONSIVE BREAKPOINTS ================= */
 @media (max-height: 800px) and (min-width: 992px) {
-    .process-slides { height: 58vh; margin-top: 2vh; }
+    .process-slides { height: 52vh; margin-top: 2vh; }
     .process-slides .process-step h3 {
         margin-bottom: 10px;
     }
@@ -716,9 +719,9 @@ footer {
 
 @media (max-width: 575.98px) {
     .stagger-header .main-title { font-size: 2rem; }
-    .process-slides .process-step h3 { font-size: 1.5rem; }
+    .process-slides .process-step h3 { font-size: 1.7rem; }
     .title-container h3 { font-size: 1.5rem; }
-    .cta-left h2 { font-size: 2rem; }
+    .cta-left h2 { font-size: 2.2rem; }
 }
 
 @media (min-width: 992px) {

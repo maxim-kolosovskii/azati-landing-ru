@@ -66,6 +66,9 @@
         h1, h2, h3, h4, .accent-text, .card-project-name, .logo {
             font-family: 'Golos Text', sans-serif;
             font-weight: 600;
+        }
+
+        h2, h3, h4, .card-project-name, .logo {
             overflow-wrap: break-word;
             word-break: break-word;
             hyphens: auto;
@@ -91,7 +94,6 @@
             overflow: hidden;
             vertical-align: baseline;
             margin-left: 8px;
-            height: 1em;
             align-items: flex-end;
         }
 
@@ -194,8 +196,7 @@
             transform-style: preserve-3d;
         }
         .hero h1 {
-            line-height: 1.1;
-            letter-spacing: -2px;
+            line-height: 1.25;
         }
         .hero-desc-wrapper {
             max-width: 20em;
@@ -244,7 +245,7 @@
             }
             .header-nav { display: flex; gap: 4vw; }
 
-            .hero h1 { font-size: clamp(2.5rem, 5vw, 5.5rem); }
+            .hero h1 { font-size: clamp(3.1rem, 6.3vw, 5.5rem); }
         }
         @media (min-width: 992px) {
             .arrow-mask { margin-left: 8px; }
@@ -280,10 +281,13 @@
             <div class="hero-title-wrapper">
                 <h1 class="hero-title">
                     <span class="accent-text">Дизайн, который</span><br>
-                    <span class="white-text">решает задачи</span>
-                    <span class="arrow-mask">
-                            <span class="css-dot"></span>
+                    <span class="white-text">решает
+                        <span class="nowrap">задачи
+                            <span class="arrow-mask">
+                                <span class="css-dot"></span>
+                            </span>
                         </span>
+                    </span>
                 </h1>
             </div>
 
