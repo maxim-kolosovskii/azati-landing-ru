@@ -41,11 +41,12 @@ let isFiltering = false;
 const footerStopTrigger = ScrollTrigger.create({
     trigger: '.footer-cta',
     start: 'top 22%',
+    refreshPriority: -1, // обсчитывается ПОСЛЕ фиксации всех секций выше
     onEnter: () => {
         if (scrollPaused || isFiltering) return;
         scrollPaused = true;
         lenis.stop();
-        setTimeout(() => { lenis.start(); scrollPaused = false; }, 1500);
+        setTimeout(() => { lenis.start(); scrollPaused = false; }, 1000);
     },
     onLeaveBack: () => { scrollPaused = false; lenis.start(); }
 });
@@ -194,7 +195,8 @@ mm.add("(min-width: 992px)", () => {
             pin: true,
             scrub: 1.6,
             anticipatePin: 1,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            refreshPriority: 1 // этот пин рассчитывает свою высоту в первую очередь
         }
     });
 
