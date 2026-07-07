@@ -37,11 +37,12 @@ document.querySelector('.contact-form')?.addEventListener('invalid', () => {
 
 // Пауза скролла при входе в футер
 let scrollPaused = false;
+let isFiltering = false;
 const footerStopTrigger = ScrollTrigger.create({
     trigger: '.footer-cta',
     start: 'top 22%',
     onEnter: () => {
-        if (scrollPaused) return;
+        if (scrollPaused || isFiltering) return;
         scrollPaused = true;
         lenis.stop();
         setTimeout(() => { lenis.start(); scrollPaused = false; }, 1500);
@@ -265,6 +266,7 @@ if (workSection) {
         item.addEventListener('click', function() {
             // Защита от повторного клика по уже активному фильтру
             if (this.classList.contains('active')) return;
+            isFiltering = true;
 
             // 1. Переключаем активный класс в меню
             filterItems.forEach(li => li.classList.remove('active'));
@@ -312,53 +314,56 @@ if (workSection) {
                 }
             });
 
-            // 3. Запоминаем позицию скролла до изменений в DOM (через Lenis!)
-            const scrollBefore = lenis.animatedScroll;
+            // 3. Если проскроллили вглубь карточек — возвращаем вьюпорт к началу .work-section
+            const sectionRect = workSection.getBoundingClientRect();
+            if (sectionRect.top < 0) {
+                lenis.scrollTo(workSection, { offset: -40, duration: 0.6, ease: t => 1 - Math.pow(1 - t, 3) });
+            }
 
-            // 4. Плавный анимационный переход (GSAP)
+            const list = document.querySelector('.portfolio-list');
+            // Фиксируем высоту на время анимации
+            list.style.minHeight = list.offsetHeight + 'px';
+
+            // Синхронизированный таймлайн
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    list.style.minHeight = '';
+                    ScrollTrigger.refresh();
+                    updateTagsOverflow();
+                    isFiltering = false;
+                }
+            });
+
+            // Скрываем: анимация → убираем из потока
             if (cardsToHide.length > 0) {
-                gsap.to(cardsToHide, {
-                    opacity: 0,
-                    scale: 0.95,
-                    duration: 0.3,
-                    overwrite: "auto",
+                tl.to(cardsToHide, {
+                    opacity: 0, scale: 0.96, duration: 0.25, ease: 'power2.in', overwrite: 'auto',
                     onComplete: () => {
                         cardsToHide.forEach(c => {
                             c.style.display = 'none';
+                            c.style.position = 'absolute';
+                            c.style.pointerEvents = 'none';
                             c.style.top = '';
                         });
-                        // Восстанавливаем скролл после схлопывания высоты
-                        lenis.scrollTo(scrollBefore, { immediate: true, force: true });
-                        ScrollTrigger.refresh();
                     }
                 });
             }
 
-            // Пересчет лесенки значений top для position: sticky у живых карточек
-            cardsToShow.forEach((card, index) => {
-                card.style.display = 'flex';
-                // Динамически выстраиваем лесенку для карточек
-                card.style.top = `${120 + index * 20}px`;
+            // Показываем и перестраиваем
+            tl.add(() => {
+                cardsToShow.forEach((card, i) => {
+                    card.style.display = 'flex';
+                    card.style.position = 'sticky';
+                    card.style.pointerEvents = 'auto';
+                    card.style.top = `${90 + i * 10}px`;
+                });
             });
 
-            // Восстанавливаем скролл после показа карточек (если высота изменилась)
-            lenis.scrollTo(scrollBefore, { immediate: true, force: true });
-
-            gsap.fromTo(cardsToShow,
-                { opacity: 0, scale: 0.98 },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.5,
-                    stagger: 0.08,
-                    ease: "power2.out",
-                    overwrite: "auto",
-                    onComplete: () => {
-                        // Пересчитываем ScrollTrigger, чтобы параллакс картинок не ломался
-                        ScrollTrigger.refresh();
-                        updateTagsOverflow();
-                    }
-                }
+            // Проявляем
+            tl.fromTo(cardsToShow,
+                { opacity: 0, scale: 0.97 },
+                { opacity: 1, scale: 1, duration: 0.4, stagger: 0.06, ease: 'power2.out', overwrite: 'auto' },
+                '+=0.02'
             );
         });
     });
